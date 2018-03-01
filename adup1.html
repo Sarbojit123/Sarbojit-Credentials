@@ -1,0 +1,150 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+<center>
+<div id="wrapper">
+
+<?php include("connection.php");?>
+
+<?php include("connection.php");?>
+
+<div id="content">
+<br>
+
+<?php
+
+session_start();
+
+include ("connection.php");
+	
+
+	$uid=$_POST["uid"];
+	
+	$_SESSION["UserId"]=$uid;
+	
+	if(isset($_POST["uid"]))
+	
+	{
+	
+	$sql = "select * from user_dt where 
+	UserId='$uid'";
+
+	$result = mysql_query($sql);
+
+	while ($row = mysql_fetch_array($result))
+	{
+		if ($result);
+		{
+		$uid = $row['UserId'];
+		$pwd = $row['Password'];
+		$cwd = $row['ConfirmPassword'];
+		$name = $row['Name'];
+		$cont = $row['Contact'];
+		$address = $row['Address'];
+		$lastqual = $row['LastQualification'];
+		$gender = $row['Gender'];
+		$hobby= $row['Hobbies'];
+		}
+		
+	}
+
+?>
+
+
+
+<form action="adup2.php" method="post">
+<table>
+<tr>
+<td>UserID:</td>
+<td><input type="text" name="uid" id="ud" 
+value="<?php echo $uid?>" readonly></td>
+</tr>
+
+<tr>
+<td>Password:</td>
+<td><input type="password" name="pwd" id="pd"
+ value="<?php echo $pwd?>"></td>
+</tr>
+
+<tr>
+<td>Confirm Password:</td>
+<td><input type="password" name="cwd" id="cd" value="<?php echo $cwd?>"></td>
+</tr>
+
+<tr>
+<td>Name:</td>
+<td><input type="text" name="name" id="sb" value="<?php echo $name?>"></td>
+</tr>
+
+<tr>
+<td>Contact:</td>
+<td><input type="text" name="cont" id="ct" value="<?php echo $cont?>"></td>
+</tr>
+
+<tr>
+<td>Address:</td>
+<td><textarea name="address" rows="10" cols="15"
+ id="add" value=""> <?php echo $address?> </textarea></td>
+</tr>
+
+<tr>
+<td>Gender:</td>
+<td><input <?php if($gender=="Male"){?> checked="checked"
+<?php } ?> type= "radio" name= "gender" value= "male">Male
+<input <?php if($gender=="Female"){?> checked="checked"
+<?php } ?> type= "radio" name= "gender" value= "female">Female
+</td>
+</tr>
+
+<tr>
+<td>Hobbies:</td>
+<td><input type="checkbox" name="hobby" value="games"
+		
+		<?php
+		if ($hobby == "games")
+			{
+			echo "checked";
+			}
+		?>>Games
+
+<input type="checkbox" name="hobby" value="music"
+
+		<?php
+		if ($hobby == "Music")
+			{
+			echo "checked";
+			}
+		?>>Music
+
+
+<input type="checkbox" name="hobby" value="reading"
+
+		<?php
+		if ($hobby == "Reading")
+			{
+			echo "checked";
+			}
+		?>>Reading
+</td>
+</tr>
+
+<tr>
+<td><input type="submit" value="Update"></td>
+</tr>
+
+</table>
+</form>
+
+</div>
+
+<?php include("connection.php");?>
+
+<?php include("connection.php");?>
+
+</div>
+</center>
+</html>
+<?php }
+else echo "Recheck";
+?>

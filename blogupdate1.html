@@ -1,0 +1,86 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+<center>
+<div id="wrapper">
+
+<?php include("connection.php");?>
+
+<?php include("connection.php");?>
+
+<div id="content">
+<br>
+
+<?php
+
+session_start();
+
+include ("connection.php");
+	
+
+	$bid=$_POST["bid"];
+	
+	$_SESSION["BlogId"]=$bid;
+	
+	
+	if(isset($_POST["bid"]))
+	
+	{
+	
+	$sql = "select * from blog_det where BlogId='$bid'";
+
+	$result = mysql_query($sql);
+
+	while ($row = mysql_fetch_array($result))
+	{
+		if ($result)
+		{
+		$bidd = $row['BlogId'];
+		$bcontent = $row['BlogContent'];
+		$btopic = $row['BlogTopic'];
+		}
+		
+	}
+	
+?>
+
+
+
+<form action="blogupdate2.php" method="post">
+<table>
+<tr>
+<td>Blog Id:</td>
+<td><input type="text" name="bid" id="bd" 
+value="<?php echo $bidd?>" readonly></td>
+</tr>
+
+<tr>
+<td>Blog Content:</td>
+<td><textarea rows="20"cols="50"name="content"id="co"><?php echo $bcontent?></textarea></td>
+</tr>
+
+<tr>
+<td>Blog Topic:</td>
+<td><input type="text" name="topic" id="tp" value="<?php echo $btopic?>"></td>
+</tr>
+
+<tr>
+<td><input type="submit" value="Update"></td>
+</tr>
+
+</table>
+</form>
+
+</div>
+
+<?php include("connection.php");?>
+
+<?php include("connection.php");?>
+
+</div>
+</center>
+</html>
+<?php }
+else echo "Recheck";
+?>

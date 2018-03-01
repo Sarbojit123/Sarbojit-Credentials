@@ -1,0 +1,8 @@
+<?php
+	session_start();
+	$uid=$_POST["uid"];
+	$pwd=$_POST["pwd"];
+	$_SESSION["uid"]=$uid;
+	$_SESSION["pwd"]=$pwd;
+	header("location:Userview.php");
+?>

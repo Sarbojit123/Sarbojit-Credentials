@@ -1,0 +1,24 @@
+<?php
+	session_start();
+	$uid=$_POST["uid"];
+	$pwd=$_POST["pwd"];
+	$con=mysql_connect("localhost","root","");
+	$db=mysql_select_db("blog",$con);
+	$sql="select * from user_det where UserID='$uid' && Password='$pwd'";
+	$result=mysql_query($sql);
+	while($row=mysql_fetch_array($result))
+	{
+		$uid=$row["UserId"];
+		$pwd=$row["Password"];
+		if(($uid==$uid && $pwd==$pwd))
+		{
+			$_SESSION["UserId"]=$uid;
+			echo "Valid User";
+			header('location:view.php');
+		}
+		else
+		{
+			echo "Invalid user";
+		}
+	}
+?>

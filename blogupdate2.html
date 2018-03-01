@@ -1,0 +1,42 @@
+<?php
+
+session_start();
+
+$bid=$_SESSION["BlogId"];
+	
+		// user fields post
+	$bid = $_POST["bid"];
+	$content = $_POST["content"];
+	$topic = $_POST["topic"];
+	//$name = $_POST["name"];
+	//$cont = $_POST["cont"];
+	//$address = $_POST["address"];
+	//$lastqual = $_POST["lastqual"];
+	//$gender = $_POST["gender"];
+	//$hobby = $_POST["hobby"];
+
+
+include ("connection.php");
+
+$sql = "UPDATE blog_det SET
+		
+	BlogId = '$bid',
+	BlogContent = '$content',
+	BlogTopic = '$topic'
+		
+		where BlogId='$bid'";
+		
+	
+	$result = mysql_query($sql);
+	
+		if ($result)
+		{
+			header("location:Blogpage.php");
+		}
+		else
+		{
+			die(mysql_error());
+
+			
+		}
+?>

@@ -1,0 +1,10 @@
+<?php
+	session_start();
+	$bid=$_POST["bid"];
+	$content=$_POST["content"];
+	$topic=$_POST["topic"];
+	$_SESSION["bid"]=$bid;
+	$_SESSION["content"]=$content;
+	$_SESSION["topic"]=$topic;
+	header("location:Viewblog.php");
+?>
